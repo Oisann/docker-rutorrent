@@ -1,3 +1,5 @@
+# WARNING - This is modified to work on my own setup.
+
 [linuxserverurl]: https://linuxserver.io
 [forumurl]: https://forum.linuxserver.io
 [ircurl]: https://www.linuxserver.io/irc/
@@ -24,12 +26,13 @@ Popular rtorrent client with a webui for ease of use. [Rutorrent](https://github
 ```
 docker create --name=rutorrent \
 -v <path to data>:/config \
--v <path to downloads>:/downloads \
+-v <path to tv downloads>:/tv \
+-v <path to movies downloads>:/movies \
 -e PGID=<gid> -e PUID=<uid> \
 -e TZ=<timezone> \
 -p 80:80 -p 5000:5000 \
 -p 51413:51413 -p 6881:6881/udp \
-linuxserver/rutorrent
+oisann/rutorrent
 ```
 
 ## Parameters
@@ -45,7 +48,8 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 * `-p 51413` - the port(s)
 * `-p 6881/udp` - the port(s)
 * `-v /config` - where rutorrent should store it's config files
-* `-v /downloads` - path to your downloads folder
+* `-v /tv` - path to your tv downloads folder
+* `-v /movies` - path to your movies downloads folder
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
 * `-e TZ` for timezone information, eg Europe/London
